@@ -50,9 +50,9 @@ const VehicleChart = ({ vehicle }) => {
   }));
 
   return (
-    <ResponsiveContainer width="100%" height={400}>
-      <LineChart data={processedData}>
-        <CartesianGrid strokeDasharray="3 3" />
+    <ResponsiveContainer width="100%" height={500}>
+      <LineChart data={processedData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+        <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
         <XAxis
           dataKey="time"
           type="number"
@@ -60,20 +60,23 @@ const VehicleChart = ({ vehicle }) => {
           tickFormatter={(tick) =>
             `${Math.floor(tick)}:${tick % 1 === 0 ? "00" : "30"}`
           }
-          label={{ value: "Time", position: "insideBottomRight", offset: 0 }}
+          label={{ value: "Time", position: "insideBottomRight", offset: -5, fill: "#8884d8" }}
         />
         <YAxis
           dataKey="stage"
           type="category"
-          label={{ value: "Stages", angle: -90, position: "insideLeft" }}
+          label={{ value: "Stages", angle: -90, position: "insideLeft", fill: "#8884d8" }}
         />
-        <Tooltip />
-        <Legend />
+        <Tooltip
+          contentStyle={{ backgroundColor: "#fff", borderColor: "#ccc" }}
+          itemStyle={{ color: "#8884d8" }}
+        />
+        <Legend verticalAlign="top" height={36} />
         <Line
           type="monotone"
           dataKey="stage"
           stroke="#8884d8"
-          activeDot={{ r: 8 }}
+          activeDot={{ r: 8, fill: "#8884d8" }}
           dot={{ fill: "red" }}
         />
       </LineChart>
